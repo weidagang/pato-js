@@ -1,0 +1,27 @@
+{
+  "name": "pato",
+  "version": "0.1.0",
+  "description": "A functional pattern matching library for JavaScript",
+  "main": "pato.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node test/unit-test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/weidagang/pato-js.git"
+  },
+  "keywords": [
+    "pattern",
+    "matching",
+    "pattern matching",
+    "pattern-matching"
+  ],
+  "author": "weidagang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/weidagang/pato-js/issues"
+  }
+}
