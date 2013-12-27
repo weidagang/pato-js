@@ -7,7 +7,7 @@ Functional pattern matching for JavaScript
 ```javascript
 var pato = require('pato');
 var match = pato.match;
-var int = pato.int;
+var int = pato.types.int;
 
 // match by value
 var r = match(2)
