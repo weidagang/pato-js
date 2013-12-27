@@ -4,7 +4,7 @@ pato.js
 Functional pattern matching for JavaScript
 
 ## Example ##
-```
+```javascript
 var pato = require('pato');
 var match = pato.match;
 var int = pato.int;
