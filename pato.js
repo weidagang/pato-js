@@ -468,18 +468,18 @@ var type_checker = (function() {
 
 
 var pato = (function () {
-    function match(cond, token) {
-        var _ = { cond : cond , token : (null != token ? token : cond), chain : null, result : null };
+    function match(target, token) {
+        var _ = { target : target , token : (null != token ? token : target), chain : null, result : null };
 
         _.chain = {
-            if : function (obj) {
+            cond : function (obj) {
                 return {
                     then: function (result) {
                         if (null != _.result) {
                             return _.chain;
                         }
 
-                        if (type_checker.check(obj, _.cond)) {
+                        if (type_checker.check(obj, _.target)) {
                             _.result = result;
                         }
                         
@@ -494,7 +494,7 @@ var pato = (function () {
                             return _.chain;
                         }
 
-                        if (_.cond == value) {
+                        if (_.target == value) {
                             _.result = result;
                         }
 
@@ -509,7 +509,7 @@ var pato = (function () {
                             return _.chain;
                         }
 
-                        if (type == typeof (_.cond) || ('array' == type && _.cond instanceof Array)) {
+                        if (type == typeof (_.target) || ('array' == type && _.target instanceof Array)) {
                             _.result = result;
                         }
 
@@ -524,7 +524,7 @@ var pato = (function () {
                             return _.chain;
                         }
 
-                        if (_.cond instanceof func) {
+                        if (_.target instanceof func) {
                             _.result = result;
                         }
 

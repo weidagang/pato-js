@@ -138,7 +138,7 @@ function test_any() {
     console.log('Case ' + case_name + ' passed\n');
 }
 
-function test_if() {
+function test_cond() {
     var case_name = arguments.callee.name;
     var case_i = 0;
     console.log('Begin case ' + case_name);
@@ -146,7 +146,7 @@ function test_if() {
     var r = match({ age : 31, male : true, name : 'todd'})
         .type('number').then(function(x) { return 2 * x; })
         .type('function').then('haha')
-        .if({ name : 'todd' }).then('hi todd')
+        .cond({ name : 'todd' }).then('hi todd')
         .any().then('')
     .done();
     assert('hi todd' == r, case_name + "." + (++case_i));
@@ -154,8 +154,8 @@ function test_if() {
     var r = match({ age : 31, male : true, name : 'todd'})
         .type('number').then(function(x) { return 2 * x; })
         .type('function').then('haha')
-        .if({ age : int(10, 35), male : true }).then('young man')
-        .if({ age : int(10, 19) }).then('teenager')
+        .cond({ age : int(10, 35), male : true }).then('young man')
+        .cond({ age : int(10, 19) }).then('teenager')
         .any().then('')
     .done();
     assert('young man' == r, case_name + "." + (++case_i));
@@ -163,9 +163,9 @@ function test_if() {
     var r = match({ age : 1, male : true, name : 'monad'})
         .type('number').then(function(x) { return 2 * x; })
         .type('function').then('haha')
-        .if({ age : int(10, 35), male : true }).then('young man')
-        .if({ age : int(10, 19) }).then('teenager')
-        .if({ age : int(0, 10), male : true }).then('little boy')
+        .cond({ age : int(10, 35), male : true }).then('young man')
+        .cond({ age : int(10, 19) }).then('teenager')
+        .cond({ age : int(0, 10), male : true }).then('little boy')
         .any().then('')
     .done();
     assert('little boy' == r, case_name + "." + (++case_i));
@@ -173,10 +173,10 @@ function test_if() {
     var r = match({ age : 29, male : false, name : 'april'})
         .type('number').then(function(x) { return 2 * x; })
         .type('function').then('haha')
-        .if({ age : int(10, 35), male : true }).then('young man')
-        .if(function(x) { return x.age < 30 && !x.male; }).then('young girl')
-        .if({ age : int(10, 19) }).then('teenager')
-        .if({ age : int(0, 10), male : true }).then('little boy')
+        .cond({ age : int(10, 35), male : true }).then('young man')
+        .cond(function(x) { return x.age < 30 && !x.male; }).then('young girl')
+        .cond({ age : int(10, 19) }).then('teenager')
+        .cond({ age : int(0, 10), male : true }).then('little boy')
         .any().then('')
     .done();
     assert('young girl' == r, case_name + "." + (++case_i));
@@ -206,10 +206,10 @@ function test_result() {
     
     var person = { age : 29, male : false, name : 'april'};
     var r = match(person.age, person)
-        .if(int(0, 9)).then(function(x) { return 'baby ' + x.name; })
-        .if(int(10, 19)).then(function(x) { return 'teenager ' + x.name; })
-        .if(int(20, 35)).then(function(x) { return 'young ' + x.name; })
-        .if(int(36)).then(function(x) { return 'old ' + x.name; })
+        .cond(int(0, 9)).then(function(x) { return 'baby ' + x.name; })
+        .cond(int(10, 19)).then(function(x) { return 'teenager ' + x.name; })
+        .cond(int(20, 35)).then(function(x) { return 'young ' + x.name; })
+        .cond(int(36)).then(function(x) { return 'old ' + x.name; })
         .any().then('')
     .done();
     assert('young april' == r, case_name + "." + (++case_i));
@@ -221,6 +221,6 @@ test_equal();
 test_type();
 test_instance_of();
 test_any();
-test_if();
+test_cond();
 
 test_result();
