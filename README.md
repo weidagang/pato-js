@@ -19,7 +19,7 @@ assert(200 == r);
 
 // match by type 
 var r = match('world')
-    .type('number').then(1)
+    .type('number').then(function(x) { return 2 * x; })
     .type('array').then([1, 2])
     .type('string').then(function(x) { return 'hello ' + x; })
 .done();
