@@ -26,6 +26,12 @@ var r = match('world')
 assert('hello world' == r);
 
 // match by condition
+var r = match(31)
+    .cond(int(0, 9)).then('less than 10')
+    .cond(int(10, 50)).then('between 10 and 50')
+.done();
+assert('between 10 and 50' == r);
+
 var r = match({ age : 31, male : false, name : 'todd'})
     .cond({ age : int(10, 35), male : true }).then('young man')
     .cond({ age : int(10, 35), male : false }).then('young girl')
